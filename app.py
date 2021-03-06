@@ -3,11 +3,12 @@ from flask import render_template, request, flash, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 import time
 from datetime import datetime
-import config
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = config.secret_key
+#app.config['SECRET_KEY'] = config.secret_key
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 db = SQLAlchemy(app)
 
