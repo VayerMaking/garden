@@ -17,6 +17,13 @@ db = SQLAlchemy(app)
 def index():
     return render_template('index.html')
 
+@app.route('/paypal', methods=['GET'])
+def paypal():
+    return render_template('paypal.html')
+
+@app.route('/preorder', methods=['GET'])
+def preorder():
+    return render_template('preorder.html')
 
 port = int(os.environ.get("PORT", 5000))
 app.run(host='0.0.0.0', port=port, debug=True)
