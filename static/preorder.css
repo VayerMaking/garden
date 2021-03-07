@@ -37,6 +37,14 @@ body {
   padding: 0 16px;
 }
 
+.succesfull_preorder_text{
+  text-align: justify;
+  text-justify: inter-word;
+  text-shadow: 4px 4px #67eb34;
+  text-align-last: center;
+  padding: 300px 300px 15px 300px;
+}
+
 .container {
   background-color: black;
   padding: 5px 300px 15px 300px;
