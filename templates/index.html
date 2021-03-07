@@ -2,18 +2,24 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Celery Flask Application</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../static/main_page.css">
+
+	<title>9ard3n</title>
 </head>
 <body>
-  <h1>Greetings from Scalingo</h1>
+	<div class="center_welcome_text">
+		<h2 class="welcome_text">Welcome to the official 9ard3n website!</h2>
+	</div>
+  <div class="center_button">
+  	<button id ="gotopreorder_button" type="button" class="btn">Go to preorder</button>
+  </div>
 
-  <h2> Celery returned: {{ celery.result }} </h2>
 
-
-  <form method="GET" action="/">
-    <label for="name"> Enter your name : </label>
-    <input type="text" name="name"/>
-    <input type="submit"/>
-  </form>
+	<script type="text/javascript">
+			document.getElementById("gotopreorder_button").onclick = function () {
+				location.href = "preorder";
+			};
+	</script>
 </body>
 </html>

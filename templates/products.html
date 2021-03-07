@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>9ard3n</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="static/product_page.css">
+
+</head>
+
+<body>
+    <!-- The four columns -->
+    <div class="row">
+      <div class="column">
+        <img src="static/images/500_bc4752af-c02e-44db-933b-d16827d8ee47_grande.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      </div>
+      <div class="column">
+        <img src="static/images/422519-0320.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
+      </div>
+      <div class="column">
+        <img src="static/images/hmgoepprod.jpeg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
+      </div>
+
+    </div>
+
+    <div class="container">
+      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+      <img id="expandedImg" style="width:50%">
+      <div id="imgtext"></div>
+    </div>
+
+    <script>
+    function myFunction(imgs) {
+      var expandImg = document.getElementById("expandedImg");
+      var imgText = document.getElementById("imgtext");
+      expandImg.src = imgs.src;
+      imgText.innerHTML = imgs.alt;
+      expandImg.parentElement.style.display = "block";
+    }
+    </script>
+
+    </body>
+</html>

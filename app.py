@@ -35,6 +35,10 @@ def index():
 def paypal():
     return render_template('paypal.html')
 
+@app.route('/products', methods=['GET'])
+def products():
+    return render_template('products.html')
+
 @app.route('/preorder', methods=['GET', 'POST'])
 def preorder():
     if request.method == "POST":
