@@ -1,3 +1,7 @@
+{% block content %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +14,8 @@
 </head>
 
 <body>
+    <b><a class="btn top_btn" role="button" href = '/'>Home</a></b>
+	  <b><a class="btn top_btn" role="button" href = '/logout'>Log out</a></b>
     <!-- The four columns -->
     <div class="row">
       <div class="column">
@@ -42,3 +48,5 @@
 
     </body>
 </html>
+{% endif %}
+{% endblock %}

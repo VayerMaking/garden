@@ -46,8 +46,10 @@ body {
 }
 
 .container {
+  position: relative;
+  top: 5%;
   background-color: black;
-  padding: 5px 300px 15px 300px;
+  padding: 15px 300px 5px 300px;
   border: 1px solid lightgrey;
   border-radius: 3px;
 }

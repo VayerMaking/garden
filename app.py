@@ -38,7 +38,11 @@ def email_link(user_id):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    if 'username' in session:
+        username = session['username']
+    else:
+        username = "Guest"
+    return render_template('index.html', username=username)
 
 @app.route('/paypal', methods=['GET'])
 def paypal():

@@ -16,6 +16,9 @@
 	<div class="center_welcome_text">
 		<h2 class="welcome_text">Welcome to the official 9ard3n website!</h2>
 	</div>
+	<div class="center_button">
+		<button id ="products_button" type="button" class="btn">Products</button>
+	</div>
   <div class="center_button">
   	<button id ="gotopreorder_button" type="button" class="btn">Go to preorder</button>
   </div>
@@ -25,6 +28,7 @@
 	<div class="center_button">
   	<button id ="login_button" type="button" class="btn">Login</button>
   </div>
+
 
 
 	<script type="text/javascript">
@@ -38,6 +42,10 @@
 
 			document.getElementById("login_button").onclick = function () {
 				location.href = "login";
+			};
+
+			document.getElementById("products_button").onclick = function () {
+				location.href = "products";
 			};
 	</script>
 </body>
