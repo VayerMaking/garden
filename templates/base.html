@@ -1,0 +1,31 @@
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+{% if session['username'] %}
+	{% if username %}
+		<h4>Logged in as: {{username}}</h4>
+	{% else %}
+		{% set username = "Guest" %}
+		<h4>Logged in as: {{username}} ,  please log in or register!</h4>
+	{% endif %}
+	<b><a class="btn btn-default" role="button" href = '/'>Home</a></b>
+	<b><a class="btn btn-default" role="button" href = '/logout'>Log out</a></b>
+
+{% else %}
+	<h4>Not logged in!</h4>
+
+	<a class="btn btn-default" role="button" href="/login">Login</a>
+	<a class="btn btn-default" role="button" href="/register">Register</a>
+
+{% endif %}
+
+<html>
+<head>
+</head>
+<body>
+	<div><a href="/"></a></div>
+
+	{% block content %}{% endblock %}
+</body>
+</html>

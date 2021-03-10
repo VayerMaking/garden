@@ -27,7 +27,7 @@
   /* padding-top: 60px; */
   /* padding-left: 50%; */
   position: relative;
-  top: 50%;
+  top: 5%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -41,7 +41,7 @@
   /* padding-top: 60px; */
   /* padding-left: 50%; */
   position: relative;
-  top: 50%;
+  top: 5%;
   left: 29%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
