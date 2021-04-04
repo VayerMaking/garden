@@ -6,47 +6,114 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>9ard3n</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="static/product_page.css">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/image-table.css">
+    <script src="static/js/script.js"></script>
+    <title>Garden-front-end</title>
 </head>
 
 <body>
-    <b><a class="btn top_btn" role="button" href = '/'>Home</a></b>
-	  <b><a class="btn top_btn" role="button" href = '/logout'>Log out</a></b>
-    <!-- The four columns -->
-    <div class="row">
-      <div class="column">
-        <img src="static/images/500_bc4752af-c02e-44db-933b-d16827d8ee47_grande.png" alt="Nature" style="width:100%" onclick="myFunction(this);">
-      </div>
-      <div class="column">
-        <img src="static/images/422519-0320.jpg" alt="Snow" style="width:100%" onclick="myFunction(this);">
-      </div>
-      <div class="column">
-        <img src="static/images/hmgoepprod.jpeg" alt="Mountains" style="width:100%" onclick="myFunction(this);">
-      </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="products">Products</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-lock"></span>  Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid text-center content">
+        <div class="col-sm-6">
+            <div class="container-fluid">
+                <img id="expandedImg" style=" width:100%;height: auto;">
+            </div>
+            <div class="row">
+                <div class="col-img">
+                    <img src="static/images/Product.jpg" alt="1" class="img-fluid" style="height: auto; width: 100%;"
+                        onclick="expandImgFunc(this);">
+                </div>
+                <div class="col-img">
+                    <img src="static/images/Product.jpg" alt="2" class="img-fluid" style="height: auto; width: 100%;"
+                        onclick="expandImgFunc(this);">
+                </div>
+                <div class="col-img">
+                    <img src="static/images/Product.jpg" alt="3" class="img-fluid" style="height: auto; width: 100%;"
+                        onclick="expandImgFunc(this);">
+                </div>
+                <div class="col-img">
+                    <img src="static/images/Product.jpg" alt="4" class="img-fluid" style="height: auto; width: 100%;"
+                        onclick="expandImgFunc(this);">
+                </div>
+            </div>
 
+        </div>
+
+        <div class="col-sm-6">
+            <div>
+                <h1>What is Lorem Ipsum?</h1>
+                <div style="padding: 2vh;">
+                    <form class="form">
+                        <div class="form-group" style="float: left;">
+                            <label>color:</label>
+                            <select class="form-control-sm" id="exampleFormControlSelect1" style="color: black;">
+                                <option>White</option>
+                                <option>Black</option>
+                                <option>Blue</option>
+                                <option>White-Inversed</option>
+                                <option>Black-Inversed</option>
+                                <option>Red</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="float: inline;">
+                            <label>size:</label>
+                            <select class="form-control-sm" id="exampleFormControlSelect1" style="color: black;">
+                                <option>XS</option>
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                            </select>
+                        </div>
+                    </form>
+                    <p>price: 20.00 lv</p>
+                    <button class="btn btn-warning" style="display: inline-block;" onclick="console.log(current)">Add to
+                        bucket</button>
+                </div>
+                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
+                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-      <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-      <img id="expandedImg" style="width:50%">
-      <div id="imgtext"></div>
-    </div>
+    <footer class="container-fluid text-center" style="color:black">
+        <p>Footer Text</p>
+    </footer>
 
-    <script>
-    function myFunction(imgs) {
-      var expandImg = document.getElementById("expandedImg");
-      var imgText = document.getElementById("imgtext");
-      expandImg.src = imgs.src;
-      imgText.innerHTML = imgs.alt;
-      expandImg.parentElement.style.display = "block";
-    }
-    </script>
+</body>
 
-    </body>
 </html>
 {% endif %}
 {% endblock %}
