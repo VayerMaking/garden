@@ -4,51 +4,52 @@
 <p>You're logged in already!</p>
 {% else %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../static/main_page.css">
-
-	<title>9ard3n</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Garden-front-end</title>
 </head>
+
 <body>
-	<div class="center_welcome_text">
-		<h2 class="welcome_text">Welcome to the official 9ard3n website!</h2>
-	</div>
-	<div class="center_button">
-		<button id ="products_button" type="button" class="btn">Products</button>
-	</div>
-  <div class="center_button">
-  	<button id ="gotopreorder_button" type="button" class="btn">Go to preorder</button>
-  </div>
-	<div class="center_button">
-  	<button id ="register_button" type="button" class="btn">Register</button>
-  </div>
-	<div class="center_button">
-  	<button id ="login_button" type="button" class="btn">Login</button>
-  </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="home.html">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="products">Products</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-lock"></span>  Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <footer class="container-fluid text-center" style="color: black;">
+        <p>Footer Text</p>
+    </footer>
 
 
 
-	<script type="text/javascript">
-			document.getElementById("gotopreorder_button").onclick = function () {
-				location.href = "preorder";
-			};
-
-			document.getElementById("register_button").onclick = function () {
-				location.href = "register";
-			};
-
-			document.getElementById("login_button").onclick = function () {
-				location.href = "login";
-			};
-
-			document.getElementById("products_button").onclick = function () {
-				location.href = "products";
-			};
-	</script>
 </body>
+
 </html>
 {% endif %}
 {% endblock %}
