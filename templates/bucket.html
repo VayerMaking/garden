@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../static/css/preorder.css">
+
+</head>
+<body>
+    <div >
+      <!-- <h1>{{bucket.user_id}} , {{bucket.product_id}}!</h1> -->
+      <h1> username:  {{user.username}}</h1>
+    </div>
+    <div>
+      {{products}}
+      {% for product in products %}
+          <p>product id: {{ product.id }}</p>
+          <p>product size: {{ product.size.value }}</p>
+          <p>product color: {{ product.color.value }}</p>
+          <p>product design: {{ product.design.value }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endif %}
+{% endblock %}
