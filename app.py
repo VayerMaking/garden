@@ -1,21 +1,19 @@
 from flask import Flask
-from flask import render_template, request, flash, redirect, url_for, session
+from flask import render_template, request, flash, redirect, url_for, session, make_response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import time
 import os
 from datetime import datetime
 import hashlib
-
+import enum
 
 app = Flask(__name__)
-#app.config['SECRET_KEY'] = config.secret_key
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
-
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') or 'sqlite:///todo.db'
 db = SQLAlchemy(app)
 
 class User(db.Model):
+    __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100))
     email = db.Column(db.String(100))
@@ -26,6 +24,36 @@ class User(db.Model):
 
     def verify(self, thing_to_verify):
         return self.thing_to_verify == hash_password(thing_to_verify)
+
+class Bucket(db.Model):
+    __tablename__ = 'bucket'
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User", backref=db.backref("user", uselist=False))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=True)
+
+class Sizes(enum.Enum):
+    S = "S"
+    M = "M"
+    L = "L"
+    XL = "XL"
+
+class Colors(enum.Enum):
+    white = "White"
+    black = "Black"
+    red = "Red"
+    blue = "Blue"
+
+class Designs(enum.Enum):
+    original = "Original"
+    inverted = "Inverted"
+
+class Product(db.Model):
+    __tablename__ = 'product'
+    id = db.Column(db.Integer, primary_key = True)
+    size = db.Column(db.Enum(Sizes), nullable=False)
+    color = db.Column(db.Enum(Colors), nullable=False)
+    design = db.Column(db.Enum(Designs), nullable=False)
 
 def hash_password(thing_to_hash):
     return hashlib.sha256(thing_to_hash.encode('utf-8')).hexdigest()
@@ -48,9 +76,48 @@ def index():
 def paypal():
     return render_template('paypal.html')
 
-@app.route('/products', methods=['GET'])
+@app.route('/products', methods=['GET', 'POST'])
 def products():
     return render_template('products.html')
+
+@app.route('/add_to_bucket', methods=['GET', 'POST'])
+def add_to_bucket():
+    req = request.get_json()
+
+    # print("req: ", req)
+
+    res = make_response(jsonify({"message": "OK"}), 200)
+
+    # print("color: ", req['color'])
+    # print("size: ", req['size'])
+    # print("design: ", req['design'])
+    product = Product.query.filter_by(color=req['color'], size=req['size'], design=req['design']).first()
+    # print(product)
+    user_id=request.form.get('user_id')
+    # print(product.id)
+    bucket = Bucket(user_id=session['user_id'], product_id=product.id)
+
+    # print(bucket.id)
+    # print(bucket.user_id)
+    # print(bucket.product_id)
+    db.session.add(bucket)
+    db.session.commit()
+    return res
+    return "success"
+
+@app.route('/bucket', methods=['GET'])
+def get_bucket():
+    buckets = Bucket.query.filter_by(user_id=session['user_id']).all()
+    user = User.query.filter_by(id=buckets[0].user_id).first()
+    product_ids = []
+    for bucket in buckets:
+        product_ids.append(bucket.product_id)
+    products = []
+    for product_id in product_ids:
+        product = Product.query.filter_by(id=product_id).first()
+        products.append(product)
+
+    return render_template('bucket.html', bucket=bucket, user=user, products=products)
 
 @app.route('/preorder', methods=['GET', 'POST'])
 def preorder():
@@ -107,6 +174,7 @@ def login():
             return render_template("login.html", message="invalid credentials")
 
         session['username'] = data['username']
+        session['user_id'] = user.id
 
         return redirect(('/'))
 
