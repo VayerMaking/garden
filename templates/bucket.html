@@ -8,7 +8,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../static/css/preorder.css">
+<link rel="stylesheet" href="../static/css/style.css">
+<link rel="stylesheet" href="../static/css/bucket.css">
 
 </head>
 <body>
@@ -16,14 +17,19 @@
       <!-- <h1>{{bucket.user_id}} , {{bucket.product_id}}!</h1> -->
       <h1> username:  {{user.username}}</h1>
     </div>
-    <div>
-      {{products}}
+    <div class="row">
       {% for product in products %}
-          <p>product id: {{ product.id }}</p>
-          <p>product size: {{ product.size.value }}</p>
-          <p>product color: {{ product.color.value }}</p>
-          <p>product design: {{ product.design.value }}</p>
-        {% endfor %}
+      <div class="column">
+        <div class="card">
+              <!-- TODO: add specific image of the order in the card-->
+              <img src="static/images/Product.jpg" alt="2" style="height: auto; width: 100%;">
+              <p>product id: {{ product.id }}</p>
+              <p>product size: {{ product.size.value }}</p>
+              <p>product color: {{ product.color.value }}</p>
+              <p>product design: {{ product.design.value }}</p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
 </body>
 </html>
