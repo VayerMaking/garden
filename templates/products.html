@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/image-table.css">
     <script src="static/js/script.js"></script>
-    <title>Garden-front-end</title>
+    <title>9ard3n</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -31,11 +32,11 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="products">Products</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    <li><a href="bucket"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-lock"></span>  Register</a></li>
+                    <li><a href="login"><span class="glyphicon glyphicon-log-in"></span>    Login</a></li>
+                    <li><a href="register"><span class="glyphicon glyphicon-lock"></span>  Register</a></li>
                 </ul>
             </div>
         </div>
@@ -73,29 +74,33 @@
                     <form class="form">
                         <div class="form-group" style="float: left;">
                             <label>color:</label>
-                            <select class="form-control-sm" id="exampleFormControlSelect1" style="color: black;">
-                                <option>White</option>
-                                <option>Black</option>
-                                <option>Blue</option>
-                                <option>White-Inversed</option>
-                                <option>Black-Inversed</option>
-                                <option>Red</option>
+                            <select class="form-control-sm" id="color_choice" style="color: black;">
+                                <option>white</option>
+                                <option>black</option>
+                                <option>blue</option>
+                                <option>red</option>
                             </select>
                         </div>
                         <div class="form-group" style="float: inline;">
                             <label>size:</label>
-                            <select class="form-control-sm" id="exampleFormControlSelect1" style="color: black;">
-                                <option>XS</option>
+                            <select class="form-control-sm" id="size_choice" style="color: black;">
                                 <option>S</option>
                                 <option>M</option>
                                 <option>L</option>
                                 <option>XL</option>
                             </select>
                         </div>
+                        <div class="form-group" style="float: left;">
+                            <label>design:</label>
+                            <select class="form-control-sm" id="design_choice" style="color: black;">
+                                <option>original</option>
+                                <option>inverted</option>
+                            </select>
+                        </div>
                     </form>
                     <p>price: 20.00 lv</p>
-                    <button class="btn btn-warning" style="display: inline-block;" onclick="console.log(current)">Add to
-                        bucket</button>
+                    <button class="btn btn-warning" style="display: inline-block;" id="submit" onclick="submit_message();">Submit message</button>
+
                 </div>
                 <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
@@ -112,6 +117,45 @@
         <p>Footer Text</p>
     </footer>
 
+   <script>
+
+  function submit_message() {
+
+    var color = document.getElementById("color_choice");
+    var size = document.getElementById("size_choice");
+    var design = document.getElementById("design_choice");
+
+    var entry = {
+      color: color.value,
+      size: size.value,
+      design: design.value
+    };
+
+    fetch(`${window.origin}/add_to_bucket`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json"
+      })
+    })
+      .then(function (response) {
+        if (response.status !== 200) {
+          console.log(`Looks like there was a problem. Status code: ${response.status}`);
+          return;
+        }
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      })
+      .catch(function (error) {
+        console.log("Fetch error: " + error);
+      });
+
+  }
+
+</script>
 </body>
 
 </html>
